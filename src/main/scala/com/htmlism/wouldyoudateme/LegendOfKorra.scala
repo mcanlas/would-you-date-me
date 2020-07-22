@@ -3,7 +3,7 @@ package com.htmlism.wouldyoudateme
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-object LegendOfKorra extends App {
+object LegendOfKorra {
   val avatar = List(20, 20, 21)
   val korra = List(12, 14, 13, 13)
 
@@ -13,14 +13,14 @@ object LegendOfKorra extends App {
     .zipWithIndex
     .flatMap { case (n, i) =>
       (1 to n)
-        .map(s => s"Avatar S${i + 1} E$s")
+        .map(s => s"Avatar: The Last Airbender S${i + 1} E$s 🌬")
     }
 
   val korraEps = korra
     .zipWithIndex
     .flatMap { case (n, i) =>
       (1 to n)
-        .map(s => s"Korra S${i + 1} E$s")
+        .map(s => s"Legend of Korra S${i + 1} E$s 🔥")
     }
 
   val beforeDays =
@@ -41,8 +41,10 @@ object LegendOfKorra extends App {
   val formatter =
     DateTimeFormatter.ofPattern("E, MMM d")
 
-  allDays
-    .foreach { case (ep, d) =>
-      println(s"$ep\t${d.format(formatter)}")
-    }
+  val allDaysMap =
+    allDays
+      .map { case (ep, d) =>
+        d.format(formatter) -> ep
+      }
+      .toMap
 }

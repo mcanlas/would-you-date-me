@@ -3,7 +3,7 @@ package com.htmlism.wouldyoudateme
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-object UmbrellaAcademy extends App {
+object UmbrellaAcademy {
   val s1 = (1 to 10).map(n => s"S1 E$n")
   val s2 = (1 to 10).map(n => s"S2 E$n")
 
@@ -27,8 +27,10 @@ object UmbrellaAcademy extends App {
   val formatter =
     DateTimeFormatter.ofPattern("E, MMM d")
 
-  allDays
-    .foreach { case (ep, d) =>
-      println(s"$ep: ${d.format(formatter)}")
-    }
+  val allDaysMap =
+    allDays
+      .map { case (ep, d) =>
+        d.format(formatter) -> ("Umbrella Academy " + ep + " ☂️🎓")
+      }
+      .toMap
 }
