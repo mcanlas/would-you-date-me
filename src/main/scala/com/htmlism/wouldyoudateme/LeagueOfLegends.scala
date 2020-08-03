@@ -12,10 +12,12 @@ object LeagueOfLegends extends App {
 
   val hours = ChronoUnit.HOURS.between(now.atStartOfDay(), endDate.atStartOfDay())
 
-  for (n <- 0 to maxPoints by 10) {
+  val already = args.headOption.map(_.toInt).getOrElse(80)
+
+  for (n <- 0 to (maxPoints - already) by 20) {
     val newDate = now.atStartOfDay().plusHours(hours * n / maxPoints)
 
-    println(s"$n : $newDate")
+    println(s"${n + already} : $newDate")
   }
 
   val daysRemaining = ChronoUnit.DAYS.between(now, endDate)
